@@ -1,0 +1,12 @@
+// LangGraph Workflow
+digraph {
+	default_handler [label="Default Handler"]
+	hashtag_generator [label="Hashtag Generator"]
+	trend_analyzer [label="Trend Analyzer"]
+	end [label=End]
+	default_handler -> hashtag_generator [label="hashtag or hashtags in query"]
+	default_handler -> trend_analyzer [label="trend or trends in query"]
+	default_handler -> end [label=default]
+	hashtag_generator -> end [label=""]
+	trend_analyzer -> end [label=""]
+}

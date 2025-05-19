@@ -1,0 +1,73 @@
+{
+  "nodes": [
+    {
+      "id": "intent_detector",
+      "type": "function",
+      "label": "Intent Detector"
+    },
+    {
+      "id": "hashtag_generator",
+      "type": "function",
+      "label": "Hashtag Generator"
+    },
+    {
+      "id": "trend_analyzer",
+      "type": "function",
+      "label": "Trend Analyzer"
+    },
+    {
+      "id": "llm_handler",
+      "type": "function",
+      "label": "LLM Handler"
+    },
+    {
+      "id": "response_validator",
+      "type": "function",
+      "label": "Response Validator"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "source": "intent_detector",
+      "target": "hashtag_generator",
+      "condition": "intent = hashtags"
+    },
+    {
+      "source": "intent_detector",
+      "target": "trend_analyzer",
+      "condition": "intent = trends"
+    },
+    {
+      "source": "intent_detector",
+      "target": "llm_handler",
+      "condition": "intent = general"
+    },
+    {
+      "source": "hashtag_generator",
+      "target": "response_validator"
+    },
+    {
+      "source": "trend_analyzer",
+      "target": "response_validator"
+    },
+    {
+      "source": "llm_handler",
+      "target": "response_validator"
+    },
+    {
+      "source": "response_validator",
+      "target": "intent_detector",
+      "condition": "response invalid"
+    },
+    {
+      "source": "response_validator",
+      "target": "end",
+      "condition": "response valid"
+    }
+  ]
+}
